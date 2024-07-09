@@ -1,0 +1,48 @@
+#root {
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  text-align: center;
+  background-color: #140E16;
+
+}
+p {
+    color: #ffa90e;
+}
+
+h3 {
+    color: #667DD1;;
+}
+
+.searchbar {
+    display: flex;
+    background-color: #7F3035;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    padding: 5px;
+    margin: 10px;
+}
+
+button {
+    padding: 5px;
+    margin: 10px;
+    background-color: #667DD1;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.results-list {
+    background-color: #140E16;
+}
+
+.list-item {
+    border: #ffa90e;
+    border-width: 2px;
+    padding: 5px;
+}
+
+
+/* yellow color: #ffa90e */
