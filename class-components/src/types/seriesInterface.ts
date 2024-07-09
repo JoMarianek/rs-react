@@ -19,4 +19,5 @@
 
 export interface AppState {
     series: Series[];
+    isLoading: boolean;
 }
