@@ -1,5 +1,6 @@
- export interface Series {
+import { ReactNode } from "react";
 
+export interface Series {
     uid: string;
     title: string;
     abbreviation: string;
@@ -13,11 +14,20 @@
         name: string
     };
     originalBroadcaster: {
-         name: string
+        name: string
     }
 }
 
 export interface AppState {
     series: Series[];
     isLoading: boolean;
+    error?: Error;
+}
+
+export interface ErrorBoundaryState {
+    hasError: boolean;
+}
+
+export interface ErrorBoundaryProps {
+    children: ReactNode;
 }

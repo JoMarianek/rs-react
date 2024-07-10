@@ -11,6 +11,10 @@ p {
     color: #ffa90e;
 }
 
+h1 {
+ color: #7F3035;
+}
+
 h3 {
     color: #667DD1;;
 }
@@ -66,4 +70,8 @@ button {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+.fallback-ui {
+    height: 100vh;
+}
 
