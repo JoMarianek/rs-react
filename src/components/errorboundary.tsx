@@ -14,8 +14,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
         return { hasError: true}
     }
 
-    componentDidCatch(error
-: Error, errorInfo: ErrorInfo): void {
+    componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
         console.error("Error details:", error, errorInfo);
     }
 
