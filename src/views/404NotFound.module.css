@@ -1,4 +1,21 @@
-link {
-    box-sizing: border-box;
-    /* border: 2px, #blue,  */
+.notFound {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.notFound p {
+    font-size: large;
+}
+
+.notFound a {
+    /* box-sizing: border-box; */
+    border: 2px solid blue;
+    border-radius: 10px;
+    font-size: large;
+    padding: 8px;
+    text-decoration: none;
+    color: blue;
 }
