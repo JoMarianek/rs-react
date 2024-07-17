@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './index.css'
 import { Series } from './types/seriesInterface';
-import Pagination from './components/pagination';
+import Pagination from './components/Pagination';
 
 export default function App() {
     const [series, setSeries] = useState<Series[]>([]);
@@ -30,7 +30,7 @@ export default function App() {
             }
         }
         fetchSeries();
-    }, [currentPage]);
+    }, [currentPage, itemsPerPage]);
 
     if (isloading) {
         return <div className="loader-component"><span className="loader"></span></div>
@@ -43,8 +43,10 @@ export default function App() {
                 </div>
     }
     const handlePagination = (pageNumber: number) => {
+        console.log("page button was clicked")
         setCurrentPage(pageNumber)
     }
+    
     return (
         <div className="wrapper">
             <div className="searchbar">
@@ -67,7 +69,7 @@ export default function App() {
                     ))}
                 </div>
             <Pagination
-                totalItems={12}
+                totalElements={12}
                 itemsPerPage={itemsPerPage}
                 currentPage={currentPage}
                 onPageChange={handlePagination}

@@ -1,26 +1,26 @@
 interface PaginationProps {
-    totalItems: number;
+    totalElements: number;
     itemsPerPage: number;
     currentPage: number;
-    onPageChange: (page: number) => void;
+    onPageChange: (pageNumber: number) => void;
 }
 
-const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }: PaginationProps) => {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
+const Pagination = ({ totalElements, itemsPerPage, currentPage, onPageChange }: PaginationProps) => {
+    const totalPages = Math.ceil(totalElements / itemsPerPage);
     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
     
-    const handleClick = (page: number) => {
-        if (page >= 0 && page < totalPages) {
-            onPageChange(page);
+    const handleClick = (pageNumber: number) => {
+        if (pageNumber >= 0 && pageNumber <= totalPages) {
+            onPageChange(pageNumber);
         }
     };
-    
+    console.log(onPageChange)
     return (
         <div className="pagination">
             {pageNumbers.map((pageNumber) => (
                 <button 
                     key={pageNumber}
-                    onClick={() => handleClick(pageNumber -1)}
+                    onClick={() => handleClick(pageNumber)}
                     className={pageNumber - 1 === currentPage ? 'active' : ''}
                 >
                     {pageNumber}

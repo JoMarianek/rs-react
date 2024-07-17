@@ -5,7 +5,7 @@ import PageNotFound from './views/404NotFound.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import { ErrorBoundary } from './components/errorboundary.tsx'
+import { ErrorBoundary } from './components/Errorboundary.tsx'
 
 const router = createBrowserRouter([{
         path: "/",
