@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import './index.css'
 import { Series } from './types/seriesInterface';
 import Pagination from './components/Pagination';
+import { useLocation } from 'react-router-dom';
 
 export default function App() {
+    const query = new URLSearchParams(useLocation().search)
     const [series, setSeries] = useState<Series[]>([]);
     const [isloading, setLoading] = useState(true);
     const [error, setError] = useState<boolean | undefined>(undefined);
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(parseInt(query.get('pageNumber') || '0', 10));
     const itemsPerPage = 6;
 
     function handleClick() {
@@ -17,7 +19,7 @@ export default function App() {
     useEffect(() => {
         const fetchSeries = async () => {
             try {
-                const response = await fetch("https://stapi.co/api/v1/rest/series/search?pageSize=6")
+                const response = await fetch(`https://stapi.co/api/v1/rest/series/search?pageNumber=${currentPage}&pageSize=6`)
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
@@ -43,10 +45,9 @@ export default function App() {
                 </div>
     }
     const handlePagination = (pageNumber: number) => {
-        console.log("page button was clicked")
-        setCurrentPage(pageNumber)
-    }
-    
+        setCurrentPage(pageNumber - 1);
+    };
+
     return (
         <div className="wrapper">
             <div className="searchbar">

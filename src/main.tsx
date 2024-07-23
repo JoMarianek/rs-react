@@ -10,11 +10,7 @@ import { ErrorBoundary } from './components/Errorboundary.tsx'
 const router = createBrowserRouter([{
         path: "/",
         element: <App/>,
-        errorElement: <PageNotFound />
-    },
-    {
-        path: "/404",
-        element: <PageNotFound />
+        errorElement: <PageNotFound />,
     },
     {
         path: "*",
