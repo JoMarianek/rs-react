@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 
 import styles from "./404NotFound.module.css"
+
 const PageNotFound = () => {
     return (
         <div className={styles.notFound}>
