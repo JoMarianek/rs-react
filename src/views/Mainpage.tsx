@@ -1,5 +1,6 @@
+import React from 'react';
 import { useState, useEffect } from 'react'
-import './index.css'
+import '@/index.css'
 import { Series } from '@/types/seriesInterface';
 import Pagination from '@/components/Pagination';
 import { useLocation } from 'react-router-dom';

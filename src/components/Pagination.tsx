@@ -1,3 +1,4 @@
+import React from "react";
 interface PaginationProps {
     totalElements: number;
     itemsPerPage: number;
@@ -10,7 +11,7 @@ const Pagination = ({ totalElements, itemsPerPage, currentPage, onPageChange }: 
     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
     
     const handleClick = (pageNumber: number) => {
-        if (pageNumber >= 0 && pageNumber < totalPages) {
+        if (pageNumber >= 0 && pageNumber <= totalPages) {
             onPageChange(pageNumber);
         }
     };

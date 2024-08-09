@@ -1,6 +1,13 @@
-import React, { ErrorInfo } from "react";
-import { ErrorBoundaryProps, ErrorBoundaryState } from "../types/seriesInterface";
+import React, { ReactNode, ErrorInfo } from "react";
 import '../index.css'
+
+export interface ErrorBoundaryState {
+    hasError: boolean;
+}
+
+export interface ErrorBoundaryProps {
+    children?: ReactNode;
+}
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
     constructor(props: ErrorBoundaryProps) {
@@ -19,7 +26,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     }
 
     render() {
-        console.log(this.state.hasError)
+
         if (this.state.hasError) {
             return (
                 <div>

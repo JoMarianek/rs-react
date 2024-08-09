@@ -1,28 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import PageNotFound from './views/404NotFound.tsx'
+import { App } from './App.tsx'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import { ErrorBoundary } from './components/Errorboundary.tsx'
 
-const router = createBrowserRouter([{
-        path: "/",
-        element: <App/>,
-        errorElement: <PageNotFound />,
-    },
-    {
-        path: "*",
-        element: <PageNotFound />
-    }
-
-]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary>
-        <RouterProvider router={router} />
+            <App />
     </ErrorBoundary>
   </React.StrictMode>,
 )
