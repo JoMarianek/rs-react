@@ -15,7 +15,6 @@ const Pagination = ({ totalElements, itemsPerPage, currentPage, onPageChange }: 
             onPageChange(pageNumber);
         }
     };
-    console.log(onPageChange)
     return (
         <div className="pagination">
             {pageNumbers.map((pageNumber) => (

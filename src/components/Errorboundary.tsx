@@ -26,7 +26,6 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     }
 
     render() {
-
         if (this.state.hasError) {
             return (
                 <div>

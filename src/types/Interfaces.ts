@@ -1,3 +1,7 @@
+export interface SeriesResponse {
+    series: Series[];
+}
+
 export interface Series {
     uid: string;
     title: string;
@@ -14,10 +18,4 @@ export interface Series {
     originalBroadcaster: {
         name: string
     }
-}
-
-export interface AppState {
-    series: Series[];
-    isLoading: boolean;
-    error?: Error;
 }

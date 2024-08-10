@@ -24,7 +24,7 @@ h3 {
     color: #667DD1;;
 }
 
-.searchbar {
+.header {
     display: flex;
     background-color: #7F3035;
     height: 50px;

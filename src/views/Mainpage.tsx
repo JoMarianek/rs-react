@@ -1,7 +1,9 @@
 import React from 'react';
+
+import fetchSeries from '@/services/SeriesFetcher';
 import { useState, useEffect } from 'react'
 import '@/index.css'
-import { Series } from '@/types/seriesInterface';
+import { Series } from '@/types/Interfaces';
 import Pagination from '@/components/Pagination';
 import { useLocation } from 'react-router-dom';
 
@@ -18,21 +20,16 @@ export default function App() {
     }
 
     useEffect(() => {
-        const fetchSeries = async () => {
-            try {
-                const response = await fetch(`https://stapi.co/api/v1/rest/series/search?pageNumber=${currentPage}&pageSize=6`)
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                const data = await response.json();
+        const getData = async () => {
+            const data = await fetchSeries(currentPage);
+            if (data instanceof Error) {
+                setError(true);
+            } else {
                 setSeries(data.series);
                 setLoading(false);
-            } catch (error) {
-                console.error("Error fetching data", error)
-                setError(true);
             }
-        }
-        fetchSeries();
+        };
+        getData();
     }, [currentPage, itemsPerPage]);
 
     if (isloading) {
@@ -51,7 +48,7 @@ export default function App() {
 
     return (
         <div className="wrapper">
-            <div className="searchbar">
+            <div className="header">
                 <input type="text" defaultValue="Search"/>
                 <button>Search</button>
                 <p>Try out the Error Boundary &#8594;</p>
