@@ -1,0 +1,41 @@
+.detailedModal {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    top: 33px;
+    width: 100%
+}
+
+.hidden {
+    display: none;
+}
+
+.modalContent {
+    margin: 40px;
+    width: 25%;
+}
+
+.detailedModal button {
+    border: 2px;
+    border-radius: 15px;
+    border-style: solid;
+    background-color: transparent;
+    display: flex;
+    align-self: end;
+    justify-content: center;
+    color: grey;
+    width: 5%;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.detailedModal h3 {
+    font-size: 1.7em;
+}
+
+.detailedModal p {
+    font-size: 1.3em;
+}
+

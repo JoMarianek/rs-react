@@ -9,6 +9,7 @@ body {
 
 p {
     color: #ffa90e;
+    font-size: larger;
 }
 
 h1 {
@@ -21,7 +22,8 @@ h2 {
 }
 
 h3 {
-    color: #667DD1;;
+    color: #667DD1;
+    font-size: 1.5em;
 }
 
 .header {
@@ -53,6 +55,8 @@ button {
 }
 
 .list-item {
+    display: flex;
+    flex-direction: column;
     width: 30%;
     border: #ffa90e 2px solid;
     border-width: 2px;
@@ -86,3 +90,6 @@ button {
     height: 100vh;
 }
 
+div.clickable {
+    cursor: pointer;
+}

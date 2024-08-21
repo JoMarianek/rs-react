@@ -1,10 +1,13 @@
 import React from 'react';
 
-import fetchSeries from '@/services/SeriesFetcher';
-import { useState, useEffect } from 'react'
 import '@/index.css'
+import fetchSeries from '@/services/SeriesFetcher';
 import { Series } from '@/types/Interfaces';
 import Pagination from '@/components/Pagination';
+import DetailedSeries from '@/components/DetailedSeries';
+
+
+import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
 export default function App() {
@@ -12,11 +15,21 @@ export default function App() {
     const [series, setSeries] = useState<Series[]>([]);
     const [isloading, setLoading] = useState(true);
     const [error, setError] = useState<boolean | undefined>(undefined);
+    const [details, setDetails] = useState<Series | undefined>(undefined);
     const [currentPage, setCurrentPage] = useState(parseInt(query.get('pageNumber') || '0', 10));
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const itemsPerPage = 6;
 
     function handleClick() {
         setError(true);
+    }
+
+    function showDetails(serie: Series) {
+        setDetails(serie);
+    }
+
+    function toggleModal() {
+        setIsModalVisible(!isModalVisible)
     }
 
     useEffect(() => {
@@ -30,7 +43,7 @@ export default function App() {
             }
         };
         getData();
-    }, [currentPage, itemsPerPage]);
+    }, [currentPage, isModalVisible]);
 
     if (isloading) {
         return <div className="loader-component"><span className="loader"></span></div>
@@ -54,19 +67,18 @@ export default function App() {
                 <p>Try out the Error Boundary &#8594;</p>
                 <button onClick={handleClick}>Throw Error</button>
             </div>
-                <div className="results-list">
-                    {series.map(serie => (
-                        <div key={serie.uid} className="list-item">
-                            <h3>{serie.title} ({serie.abbreviation})</h3>
-                            <p>Production Years: {serie.productionStartYear} - {serie.productionEndYear || 'Ongoing'}</p>
-                            <p>Original Run: {serie.originalRunStartDate} to {serie.originalRunEndDate || 'Ongoing'}</p>
-                            <p>Seasons: {serie.seasonsCount}</p>
-                            <p>Episodes: {serie.episodesCount}</p>
-                            <p>Production Company: {serie.productionCompany.name}</p>
-                            <p>Original Broadcaster: {serie.originalBroadcaster.name}</p>
-                        </div>
-                    ))}
-                </div>
+            <div className="results-list">
+                {series.map(serie => (
+                    <div key={serie.uid} className="list-item clickable" onClick={() => {showDetails(serie); toggleModal();}}>
+                        <h3>{serie.title} ({serie.abbreviation})</h3>
+                        <p>Original Run: {serie.originalRunStartDate?.slice(0, 4)} to {serie.originalRunEndDate?.slice(0, 4) || 'Ongoing'}</p>
+                    </div>
+                ))}
+            </div>
+            {details && isModalVisible && <DetailedSeries 
+                toggleModal={toggleModal}
+                details={details}
+            />}
             <Pagination
                 totalElements={12}
                 itemsPerPage={itemsPerPage}
