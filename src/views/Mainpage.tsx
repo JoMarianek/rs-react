@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '@/index.css'
-import fetchSeries from '@/services/SeriesFetcher';
+import { fetchSeries } from '@/services/SeriesFetcher';
 import { Series } from '@/types/Interfaces';
 import Pagination from '@/components/Pagination';
 import DetailedSeries from '@/components/DetailedSeries';
@@ -15,17 +15,13 @@ export default function App() {
     const [series, setSeries] = useState<Series[]>([]);
     const [isloading, setLoading] = useState(true);
     const [error, setError] = useState<boolean | undefined>(undefined);
-    const [details, setDetails] = useState<Series | undefined>(undefined);
+    const [detailsUid, setDetailsUid] = useState<string | undefined>(undefined);
     const [currentPage, setCurrentPage] = useState(parseInt(query.get('pageNumber') || '0', 10));
     const [isModalVisible, setIsModalVisible] = useState(false);
     const itemsPerPage = 6;
 
     function handleClick() {
         setError(true);
-    }
-
-    function showDetails(serie: Series) {
-        setDetails(serie);
     }
 
     function toggleModal() {
@@ -69,15 +65,15 @@ export default function App() {
             </div>
             <div className="results-list">
                 {series.map(serie => (
-                    <div key={serie.uid} className="list-item clickable" onClick={() => {showDetails(serie); toggleModal();}}>
+                    <div key={serie.uid} className="list-item clickable" onClick={() => {setDetailsUid(serie.uid); toggleModal();}}> 
                         <h3>{serie.title} ({serie.abbreviation})</h3>
                         <p>Original Run: {serie.originalRunStartDate?.slice(0, 4)} to {serie.originalRunEndDate?.slice(0, 4) || 'Ongoing'}</p>
                     </div>
                 ))}
             </div>
-            {details && isModalVisible && <DetailedSeries 
+            {detailsUid && isModalVisible && <DetailedSeries 
                 toggleModal={toggleModal}
-                details={details}
+                uid={detailsUid}
             />}
             <Pagination
                 totalElements={12}

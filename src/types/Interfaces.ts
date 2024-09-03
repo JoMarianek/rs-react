@@ -2,6 +2,10 @@ export interface SeriesResponse {
     series: Series[];
 }
 
+export interface DetailedSeriesResponse {
+    series: Series;
+}
+
 export interface Series {
     uid: string;
     title: string;
